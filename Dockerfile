@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:18.04 as compile-env
 
 RUN apt-get update && apt-get install -y \
     git \
@@ -20,3 +20,7 @@ WORKDIR /bond/build
 RUN cmake -DBOND_ENABLE_GRPC=FALSE ..
 RUN make
 RUN make install
+
+FROM scratch
+
+COPY --from=compile-env /usr/local/bin/gbc .
