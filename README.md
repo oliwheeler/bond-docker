@@ -13,7 +13,7 @@ FROM oliwheeler/microsoft-bond AS gbc-env
 
 FROM microsoft/dotnet:sdk AS build-env
 
-COPY --from=gbc-env /usr/local/bin/gbc /usr/local/bin/gbc
+COPY --from=gbc-env /gbc /usr/local/bin/gbc
 
 WORKDIR /app
 
